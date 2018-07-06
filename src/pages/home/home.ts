@@ -1,14 +1,35 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Auth } from "@aerogear/auth";
+import { Component } from "@angular/core";
+import { NavController, NavParams } from "ionic-angular";
+import { ToastController } from "ionic-angular";
+import { authProvider } from "../../services/auth.service";
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: "page-home",
+  templateUrl: "home.html",
+  providers: [authProvider],
 })
 export class HomePage {
+  public authButtonState: boolean;
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public toastCtrl: ToastController, private auth: Auth, public navCtrl: NavController,
+    public navParams: NavParams) {
+    this.auth = auth;
+    this.authButtonState = true;
+    this.toastCtrl = toastCtrl;
+    this.navCtrl = navCtrl;
   }
 
+  public login() {
+    debugger;
+    this.auth.login().then(() => {
+      console.log("LOGGED IN")
+    });
+  }
+
+  public ionViewDidEnter(): void {
+    if (this.auth.isAuthenticated()) {
+      console.log("AUTHENTICATED")
+    }
+  }
 }

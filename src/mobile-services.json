@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "clusterName": "https://10.201.82.36:8443",
+  "namespace": "myproject",
+  "clientId": "myapp-cordova",
+  "services": [{
+    "id": "keycloak-myapp-cordova-public",
+    "name": "keycloak",
+    "type": "keycloak",
+    "url": "https://keycloak-myproject.10.201.82.36.nip.io/auth",
+    "config": {
+      "auth-server-url": "https://keycloak-myproject.10.201.82.36.nip.io/auth",
+      "confidential-port": 0,
+      "public-client": true,
+      "realm": "myproject",
+      "resource": "myapp-cordova-public",
+      "ssl-required": "external"
+    }
+  }]
+}
